@@ -216,7 +216,7 @@ export default function Home() {
   {state?.url && state?.user && <div className="w-[100%] mt-2 flex flex-col items-center gap-2">
     <Link className="block font-medium text-blue-600 underline " href={`/${state.user._id}`}>Tap this link &#128513; </Link> 
     <p className="font-bold">Or</p>
-    <a className="block font-medium" href={`whatsapp://send?text=For ${state.user.valentine_name} from ${state.user.username} &#128513;:%0A${state.url}%0A%0A%0ATry your own here &#128071; :%0A${state.url.split('/')[0]}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
+    <a className="block font-medium" href={`whatsapp://send?text=For ${state.user.valentine_name} from ${state.user.username} &#x1F601;:%0A${state.url}%0A%0A%0ATry your own here &#x1F447; :%0A${state.url.split('/')[0]}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
   </div>
   );
 }
