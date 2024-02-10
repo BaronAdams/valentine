@@ -2,24 +2,17 @@
 import { useEffect, useState } from "react";
 import { useFormState } from 'react-dom'
 import { create } from "@/lib/actions";
-// import * as img from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Belleza, Lovers_Quarrel, Raleway } from "next/font/google";
 import localFont from 'next/font/local'
 import html2canvas from 'html2canvas'
-
 
 // Lovers_Quarrel({ weight:"400", subsets:["latin"] });
 // Raleway({ subsets: ["latin"] });
 // Belleza({weight:"400", subsets:["latin"] });
-// localFont({src:'../public/fonts/LoversQuarrel-Regular.ttf'});
-// localFont({src:'../public/fonts/Raleway-VariableFont_wght.ttf'});
-// localFont({src:'../public/fonts/Belleza-Regular.ttf'});
 
-const lovaQuarrel = Lovers_Quarrel({ weight:"400", subsets:["latin"] });
-const raleway =  Raleway({ subsets: ["latin"] });
-const belleza =  Belleza({weight:"400", subsets:["latin"] });
+const lovaQuarrel = localFont({src:'../public/fonts/LoversQuarrel-Regular.ttf'});
+const raleway =  localFont({src:'../public/fonts/Raleway-VariableFont_wght.ttf'});
+const belleza =  localFont({src:'../public/fonts/Belleza-Regular.ttf'});
 const brittany = localFont({src:'../public/fonts/BrittanySignature.ttf'});
 
 export default function Home() {
@@ -28,8 +21,6 @@ export default function Home() {
   const [firstName, setfirstName] = useState();
   const [secondName, setsecondName] = useState();
   const [loading, setloading] = useState(false);
-
-  const router = useRouter();
 
   const handleChangeFile = (e)=>{
     setFile(e.target?.files[0])
@@ -135,7 +126,6 @@ export default function Home() {
     divContent.appendChild(firstDiv)
     tmp.appendChild(divContent)
 
-    
     document.body.appendChild(tmp)
       html2canvas(tmp).then(canvas => {
         const imageData = canvas.toDataURL('image/png');
@@ -153,15 +143,15 @@ export default function Home() {
   }
 
   useEffect(()=>{
+    console.log(state)
     if(state?.url || state?.username || state?.file || state?.valentine_name || state?.error){
       setloading(false)
     } 
-
     if(state?.user?.username) generateImg(state.user)
   },[state])
 
   return (
-    <div id="home">
+    <>
     <nav className="bg-white overflow-hidden dark:bg-gray-900 fixed w-full z-20 flex flex-wrap items-center justify-center h-[9vh] top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <Link href="/" className="flex h-full w-full items-center space-x-3 rtl:space-x-reverse">
           <img width={40} height={40} src="/logo.jpg" className="h-full w-full object-cover object-center" style={{transform:'scale(0.65)'}} alt="Valentine's Logo"/>
@@ -178,7 +168,7 @@ export default function Home() {
                   <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center"><span className="font-semibold">Click to upload your valentine picture</span>or drag and drop</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
-              <input onChange={handleChangeFile} id="dropzone-file" name="image" type="file" className="hidden" accept="image/*" />
+              <input onChange={handleChangeFile} id="dropzone-file" name="image" type="file" className="hidden" accept="image/*" required />
           </label>
           {((state && !file) || (state?.file && !file)) && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state?.file}</span></p>}
       </div>
@@ -191,12 +181,12 @@ export default function Home() {
       /> }
       <div className="w-[50%] max-[480px]:w-[80%]">
         <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-        <input onChange={(e)=>setfirstName(e.target.value)} type="text" id="username" name="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tap your first name" />
+        <input onChange={(e)=>setfirstName(e.target.value)} type="text" id="username" name="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required placeholder="Tap your first name" />
         {((state && !firstName) || (state?.username && !firstName)) && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state?.username}</span></p>}
       </div>  
       <div className="w-[50%] max-[480px]:w-[80%]">
         <label htmlFor="valentine_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your valentine&apos;s name</label>
-        <input onChange={(e)=>setsecondName(e.target.value)} type="text" id="valentine_name" name="valentine_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tap your valentine's name" />
+        <input onChange={(e)=>setsecondName(e.target.value)} type="text" id="valentine_name" name="valentine_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required placeholder="Tap your valentine's name" />
         {((state && !secondName) || (state?.valentine_name && !secondName)) && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state?.valentine_name}</span></p>}
       </div>  
       <div className="w-[50%] max-[480px]:w-[80%]">
@@ -213,15 +203,10 @@ export default function Home() {
         {state?.error && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state.error}</span></p>}
       </div>
   </form> 
-  {state?.url && state?.user && <div className="w-[100%] mt-2 flex flex-col items-center gap-2">
-    <Link className="block font-medium text-blue-600 underline " href={`/${state.user._id}`}>Tap this link &#128513; </Link> 
+  {state?.url &&  <div className="w-[100%] mt-2 flex flex-col items-center gap-2">
+    <a className="block font-medium text-blue-600 underline " href={`${state.url}`}>Tap this link &#128513; </a> 
     <p className="font-bold">Or</p>
-    <a className="block font-medium" href={`whatsapp://send?text=For ${state.user.valentine_name} from ${state.user.username} &#x1F601;:%0A${state.url}%0A%0A%0ATry your own here &#x1F447; :%0A${state.url.split('/')[0]}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
-  </div>
+    <a className="block font-medium" href={`whatsapp://send?text=For ${secondName} from ${firstName} &#x1F601;:%0A${state.url}%0A%0A%0ATry your own here &#x1F447; :%0A${state.url.split('/')[0]}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
+  </>
   );
 }
-// tumblr_mnsr5bUqSC1qdrk98o1_400
-// icegif-4148
-// c8d686f5271a60308748119b26511edb
-// ca5aee534774d6b4ef69168c1c75a9d1
-// 95312b8fb85b521e2e6c971e4675a6ef
