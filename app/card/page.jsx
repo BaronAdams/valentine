@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import localFont from 'next/font/local'
+import { Suspense } from 'react'
+import Loading from "../components/Loading";
 
 
 // Lovers_Quarrel({ weight:"400", subsets:["latin"] });
@@ -13,7 +15,7 @@ const raleway =  localFont({src:'../../public/fonts/Raleway-VariableFont_wght.tt
 const belleza =  localFont({src:'../../public/fonts/Belleza-Regular.ttf'});
 const brittany = localFont({src:'../../public/fonts/BrittanySignature.ttf'});
 
-export default function SomeUser() {
+function Card() {
   const searchParams = useSearchParams()
  
   const username = decodeURIComponent(searchParams.get('u'))
@@ -54,5 +56,13 @@ export default function SomeUser() {
           </div>
         </div>
     </main>
+  )
+}
+
+export default function WrappedCard(){
+  return(
+    <Suspense fallback={<Loading/>} >
+      <Card/>
+    </Suspense>
   )
 }
