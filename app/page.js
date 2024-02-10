@@ -29,7 +29,7 @@ export default function Home() {
   const [secondName, setsecondName] = useState();
   const [loading, setloading] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleChangeFile = (e)=>{
     setFile(e.target?.files[0])
@@ -175,7 +175,7 @@ export default function Home() {
                   <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                   </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center"><span className="font-semibold">Click to upload your valentine's picture</span>or drag and drop</p>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center"><span className="font-semibold">Click to upload your valentine picture</span>or drag and drop</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
               <input onChange={handleChangeFile} id="dropzone-file" name="image" type="file" className="hidden" accept="image/*" />
@@ -195,7 +195,7 @@ export default function Home() {
         {((state && !firstName) || (state?.username && !firstName)) && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state?.username}</span></p>}
       </div>  
       <div className="w-[50%] max-[480px]:w-[80%]">
-        <label htmlFor="valentine_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your valentine's name</label>
+        <label htmlFor="valentine_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your valentine&apos;s name</label>
         <input onChange={(e)=>setsecondName(e.target.value)} type="text" id="valentine_name" name="valentine_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tap your valentine's name" />
         {((state && !secondName) || (state?.valentine_name && !secondName)) && <p className="mt-2 text-sm text-red-600 dark:text-red-500"><span className="font-medium">{state?.valentine_name}</span></p>}
       </div>  
