@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import localFont from 'next/font/local'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import Loading from "../components/Loading";
 import { getImage } from "@/lib/actions";
 // Lovers_Quarrel({ weight:"400", subsets:["latin"] });
@@ -16,11 +16,23 @@ const brittany = localFont({src:'../../public/fonts/BrittanySignature.ttf'});
 
 function Card() {
   const searchParams = useSearchParams()
+  const [image, setimage] = useState("")
  
   const username = decodeURIComponent(searchParams.get('u'))
   const valentine_name = decodeURIComponent(searchParams.get('v'))
   const valentine_img = decodeURIComponent(searchParams.get('i'))
   const message = decodeURIComponent(searchParams.get('m'))
+
+  useEffect(() => {
+    let loadImage = async()=>{
+      let res = await getImage(valentine_img)
+      setimage(res)
+    }
+    
+    loadImage()
+
+  }, [])
+  
 
   let finalMessage = message === "default" ? "Every beat of my heart resonates with the love I have for you, my dearest Valentine. You are the light that illuminates my world. Happy Valentine's Day, my forever love" : message;
 
@@ -30,7 +42,7 @@ function Card() {
 
   return (
       <main className="flex flex-col w-screen min-h-screen items-center overflow-x-hidden">
-        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[50%] max-[700px]:w-[75%] max-[700px]:h-[70vh]  max-[400px]:w-full" style={{backgroundImage:`url('${getImage(valentine_img)}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
+        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[50%] max-[700px]:w-[75%] max-[700px]:h-[70vh]  max-[400px]:w-full" style={{backgroundImage:`url('${image}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
           {/* <Image width={40} height={40} src={"/images/reginia.jpg"} className="absolute z-1 w-full h-full object-cover" alt="Valentine image" /> */}
           <Image width={40} height={40} src={"/images/13ea8843c050622e2055b313c2392aba.webp"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
           <Image width={40} height={40} src={"/images/icegif-4148.gif"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
@@ -50,7 +62,7 @@ function Card() {
           </div> 
           <div className="w-[42%] h-[170px] relative">
             <div className="w-full h-full absolute z-10 rotate-[-15.6deg] flex justify-center items-center bg-white">
-              <img src={`${getImage(valentine_img)}`} className="w-[90%] h-[90%] object-cover" alt="Valentine image" />
+              <img src={`${image}`} className="w-[90%] h-[90%] object-cover" />
             </div>
             <div className="w-full h-full absolute z-1 blur-sm rotate-[-26.6deg] shadow-2xl bg-[#000000]">
             </div>

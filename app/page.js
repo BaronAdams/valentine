@@ -76,11 +76,10 @@ export default function Home() {
     let span1 = document.createElement('span')
     span1.className = `${lovaQuarrel.className} ml-9 w-[80%] border-b-2 border-black text-[40.6px]`
     span1.innerText = `${elt.valentine_name}`
-    p1.appendChild(span2)
-
+    p1.appendChild(span1)
     divChild2.append(p1)
 
-    p2.appendChild(span1)
+  
     let p2 = document.createElement('p')
     p2.className = `${dayDream.className} mb-4 text-[44.4px] w-full flex items-center`
     p2.innerText += 'From '
@@ -92,7 +91,7 @@ export default function Home() {
     divChild2.append(p2)
 
     let p3 = document.createElement('p')
-    p3.className = `${raleway.className} w-full text-[20.8px]`
+    p3.className = `${raleway.className} font-medium w-full text-[20.8px]`
     p3.innerText += elt.message
     divChild2.append(p3)
 
