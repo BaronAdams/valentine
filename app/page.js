@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useFormState } from 'react-dom'
-import { create, deleteImage } from "@/lib/actions";
+import { create } from "@/lib/actions";
 import Link from "next/link";
 import localFont from 'next/font/local'
 import html2canvas from 'html2canvas'
@@ -11,8 +11,8 @@ import html2canvas from 'html2canvas'
 // Belleza({weight:"400", subsets:["latin"] });
 
 const lovaQuarrel = localFont({src:'../public/fonts/LoversQuarrel-Regular.ttf'});
+const dayDream =  localFont({src:'../public/fonts/daydream FREE.ttf'});
 const raleway =  localFont({src:'../public/fonts/Raleway-VariableFont_wght.ttf'});
-const belleza =  localFont({src:'../public/fonts/Belleza-Regular.ttf'});
 const brittany = localFont({src:'../public/fonts/BrittanySignature.ttf'});
 
 export default function Home() {
@@ -28,99 +28,78 @@ export default function Home() {
 
   const generateImg = (elt)=>{
     let tmp = document.createElement('section')
-    tmp.classList.add('w-[860px]','h-[600px]','bg-[#ec9ca9]','relative','top-[-9999px]')
+    tmp.classList.add('w-[860px]','h-[600px]','bg-[#faced6]','relative','top-[-9999px]')
 
     let firstImg = document.createElement('img')
-    firstImg.src = '/images/garden-flowers-png-0.png'
+    firstImg.src = '/images/abstract-heart.png'
     firstImg.alt = 'Garden flowers image'
-    firstImg.className ='absolute left-[-5%] top-[-5%]'
+    firstImg.className ='absolute left-[-10%] top-[-6%]'
     tmp.appendChild(firstImg)
 
     let secondImg = document.createElement('img')
-    secondImg.src = '/images/watercolor-flowers-png-image.png'
+    secondImg.src = '/images/b31896187af7300a0471cd111b0ab7d0.webp'
     secondImg.alt = 'Watercolor flowers image'
-    secondImg.className ='absolute left-[74%] top-[-15%] rotate-[180deg]'
+    secondImg.className ='absolute w-full h-full scale-[1.25] '
     tmp.appendChild(secondImg)
 
     let thirdImg = document.createElement('img')
     thirdImg.src = '/images/arc-flowers.png'
     thirdImg.alt = 'Arc flowers image'
-    thirdImg.width = 300
-    thirdImg.height = 200
-    thirdImg.className ='absolute left-[72%] bottom-0 object-cover'
+    thirdImg.width = 400
+    thirdImg.height = 300
+    thirdImg.className ='absolute left-[72%] bottom-0 object-cover h-[300px]'
     tmp.appendChild(thirdImg)
+
+    let fourthImg = document.createElement('img')
+    fourthImg.src = '/images/hearts-decor.png'
+    fourthImg.alt = 'Heart decor'
+    fourthImg.className ='absolute w-[20%] h-[45%] left-[89%] object-cover '
+    tmp.appendChild(fourthImg)
 
     let divContent = document.createElement('div')
     divContent.className='w-full h-full absolute gap-[48px] flex flex-col justify-center items-center'
 
     let h2 = document.createElement('h2')
-    h2.className = `${lovaQuarrel.className} text-[50px]`
-    h2.textContent = `For you ${elt.valentine_name}`
+    h2.className = `${dayDream.className} text-[50px]`
+    h2.textContent = `Happy Valentine Day`
     divContent.appendChild(h2)
 
     let firstDiv = document.createElement('div')
     firstDiv.className="flex gap-[48px] justify-center items-center w-full"
 
-    let divChild1 = document.createElement('div')
-    divChild1.className="w-[22.5%] h-[230px] relative"
-
-    let divChild11 = document.createElement('div')
-    divChild11.className="w-full h-full absolute z-10 rotate-[-15.6deg] flex justify-center items-center bg-white"
-    
-    let divChild111 = document.createElement('div')
-    divChild111.className=`w-[90%] h-[90%] relative`
-    let img1divChild12 = document.createElement('img')
-    img1divChild12.src = `${elt.valentine_img}`
-    img1divChild12.alt = 'Valentine img'
-    img1divChild12.className="absolute w-full h-full object-center object-cover"
-    divChild111.appendChild(img1divChild12)
-
-    let img2divChild12 = document.createElement('img')
-    img2divChild12.src = '/images/ca5aee534774d6b4ef69168c1c75a9d1.gif'
-    img2divChild12.alt = 'Butterfliers gif'
-    img2divChild12.className="absolute w-full h-full object-cover"
-    img2divChild12.style.transform = 'scale(0.85)'
-    divChild111.appendChild(img2divChild12)
-
-    divChild11.appendChild(divChild111)
-
-    divChild1.appendChild(divChild11)
-
-
-    let divChild12 = document.createElement('div')
-    divChild12.className="w-full h-full absolute z-1 blur-sm rotate-[-26.6deg] shadow-2xl bg-[#000000]"
-    divChild1.appendChild(divChild12)
-    firstDiv.appendChild(divChild1)
-
     let divChild2 = document.createElement('div')
-    divChild2.className=`${belleza.className} text-justify w-[46.4%]`
+    divChild2.className=`text-justify w-[62%]`
+
     let p1 = document.createElement('p')
-    p1.className = `mb-4 text-[24.4px] w-full`
-    p1.innerText += 'Happy '
-    let span = document.createElement('span')
-    span.className = `${brittany.className} text-[25.6px]`
-    span.innerText = 'Valentine'
-    p1.appendChild(span)
-    p1.innerText += ' day'
-    
-    let imgP = document.createElement('img')
-    imgP.width = 46
-    imgP.height = 46
-    imgP.src = '/images/hearts.png'
-    imgP.alt = 'Hearts image'
-    imgP.className="inline object-cover"
-    p1.appendChild(imgP)
+    p1.className = `${dayDream.className} mb-4 text-[44.4px] w-full flex items-center`
+    p1.innerText += 'To '
+    let span1 = document.createElement('span')
+    span1.className = `${lovaQuarrel.className} ml-9 w-[80%] border-b-2 border-black text-[40.6px]`
+    span1.innerText = `${elt.valentine_name}`
+    p1.appendChild(span2)
+
     divChild2.append(p1)
 
+    p2.appendChild(span1)
     let p2 = document.createElement('p')
-    p2.className = `${raleway.className} w-full text-[20.8px]`
-    p2.innerText += elt.message
+    p2.className = `${dayDream.className} mb-4 text-[44.4px] w-full flex items-center`
+    p2.innerText += 'From '
+    let span2 = document.createElement('span')
+    span2.className = `${lovaQuarrel.className} ml-9 w-[80%] border-b-2 border-black text-[40.6px]`
+    span2.innerText = `${elt.username}`
+    p2.appendChild(span2)
+
     divChild2.append(p2)
 
     let p3 = document.createElement('p')
-    p3.className = `${brittany.className} w-full mt-3 text-end text-[23.8px]`
-    p3.innerText += elt.username
+    p3.className = `${raleway.className} w-full text-[20.8px]`
+    p3.innerText += elt.message
     divChild2.append(p3)
+
+    let p4 = document.createElement('p')
+    p4.className = `${brittany.className} w-full mt-3 text-end text-[23.8px]`
+    p4.innerText += elt.username
+    divChild2.append(p4)
     firstDiv.appendChild(divChild2)
 
     divContent.appendChild(firstDiv)
@@ -134,13 +113,13 @@ export default function Home() {
         downloadLink.download = `${elt.valentine_name}.png`;
         downloadLink.click();
         document.body.removeChild(tmp);
-        deleteImage(elt.valentine_img);
       });
   }
 
   const handleSubmit = ()=>{
     setloading(true)
   }
+  
 
   useEffect(()=>{
     console.log(state)

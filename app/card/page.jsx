@@ -4,8 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import localFont from 'next/font/local'
 import { Suspense } from 'react'
 import Loading from "../components/Loading";
-
-
+import { getImage } from "@/lib/actions";
 // Lovers_Quarrel({ weight:"400", subsets:["latin"] });
 // Raleway({ subsets: ["latin"] });
 // Belleza({weight:"400", subsets:["latin"] });
@@ -23,13 +22,15 @@ function Card() {
   const valentine_img = decodeURIComponent(searchParams.get('i'))
   const message = decodeURIComponent(searchParams.get('m'))
 
+  let finalMessage = message === "default" ? "Every beat of my heart resonates with the love I have for you, my dearest Valentine. You are the light that illuminates my world. Happy Valentine's Day, my forever love" : message;
+
   const router = useRouter()
 
   if(!username || !valentine_name || !valentine_img || !message) router.push('/')
 
   return (
       <main className="flex flex-col w-screen min-h-screen items-center overflow-x-hidden">
-        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[50%] max-[700px]:w-[75%] max-[700px]:h-[70vh]  max-[400px]:w-full" style={{backgroundImage:`url('https://res.cloudinary.com/djcj1ulqo/image/upload/${valentine_img}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
+        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[50%] max-[700px]:w-[75%] max-[700px]:h-[70vh]  max-[400px]:w-full" style={{backgroundImage:`url('${getImage(valentine_img)}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
           {/* <Image width={40} height={40} src={"/images/reginia.jpg"} className="absolute z-1 w-full h-full object-cover" alt="Valentine image" /> */}
           <Image width={40} height={40} src={"/images/13ea8843c050622e2055b313c2392aba.webp"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
           <Image width={40} height={40} src={"/images/icegif-4148.gif"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
@@ -44,12 +45,12 @@ function Card() {
         <div className={`w-full min-h-[300px] bg-[#ec9ca9] flex flex-col items-center gap-6 text-[30px] leading-tight pt-4 p-3 overflow-hidden`}>
           <div className={`${belleza.className} text-justify w-[88%] `}>
             <p className={`mb-4 text-[20.4px]`}>Happy <span className={`${brittany.className} text-[25.6px]`}>Valentine</span> my love <img width={46} height={46} className="inline object-cover" src="/images/hearts.png" alt="HEARTS" /></p>
-            <p className={`${raleway.className} w-full text-[17.8px]`}>{message}</p>
+            <p className={`${raleway.className} w-full text-[17.8px]`}>{finalMessage}</p>
             <p className={`${brittany.className} w-full mt-3 text-end text-[17.8px]`}>{username}</p>
           </div> 
           <div className="w-[42%] h-[170px] relative">
             <div className="w-full h-full absolute z-10 rotate-[-15.6deg] flex justify-center items-center bg-white">
-              <img src={`https://res.cloudinary.com/djcj1ulqo/image/upload/${valentine_img}`} className="w-[90%] h-[90%] object-cover" alt="Valentine image" />
+              <img src={`${getImage(valentine_img)}`} className="w-[90%] h-[90%] object-cover" alt="Valentine image" />
             </div>
             <div className="w-full h-full absolute z-1 blur-sm rotate-[-26.6deg] shadow-2xl bg-[#000000]">
             </div>
