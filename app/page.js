@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useFormState } from 'react-dom'
-import { create } from "@/lib/actions";
+import { create, deleteImage } from "@/lib/actions";
 import Link from "next/link";
 import localFont from 'next/font/local'
 import html2canvas from 'html2canvas'
@@ -28,7 +28,7 @@ export default function Home() {
 
   const generateImg = (elt)=>{
     let tmp = document.createElement('section')
-    tmp.classList.add('w-[1080px]','h-[600px]','bg-[#ec9ca9]','relative','top-[-9999px]')
+    tmp.classList.add('w-[860px]','h-[600px]','bg-[#ec9ca9]','relative','top-[-9999px]')
 
     let firstImg = document.createElement('img')
     firstImg.src = '/images/garden-flowers-png-0.png'
@@ -62,7 +62,7 @@ export default function Home() {
     firstDiv.className="flex gap-[48px] justify-center items-center w-full"
 
     let divChild1 = document.createElement('div')
-    divChild1.className="w-[22.5%] h-[300px] relative"
+    divChild1.className="w-[22.5%] h-[230px] relative"
 
     let divChild11 = document.createElement('div')
     divChild11.className="w-full h-full absolute z-10 rotate-[-15.6deg] flex justify-center items-center bg-white"
@@ -93,7 +93,7 @@ export default function Home() {
     firstDiv.appendChild(divChild1)
 
     let divChild2 = document.createElement('div')
-    divChild2.className=`${belleza.className} text-justify w-[42%]`
+    divChild2.className=`${belleza.className} text-justify w-[46.4%]`
     let p1 = document.createElement('p')
     p1.className = `mb-4 text-[24.4px] w-full`
     p1.innerText += 'Happy '
@@ -101,7 +101,7 @@ export default function Home() {
     span.className = `${brittany.className} text-[25.6px]`
     span.innerText = 'Valentine'
     p1.appendChild(span)
-    p1.innerText += ' my love'
+    p1.innerText += ' day'
     
     let imgP = document.createElement('img')
     imgP.width = 46
@@ -131,11 +131,11 @@ export default function Home() {
         const imageData = canvas.toDataURL('image/png');
         const downloadLink = document.createElement('a');
         downloadLink.href = imageData;
-        downloadLink.download = 'valentine.png';
+        downloadLink.download = `${elt.valentine_name}.png`;
         downloadLink.click();
-        document.body.removeChild(tmp)
+        document.body.removeChild(tmp);
+        deleteImage(elt.valentine_img);
       });
-
   }
 
   const handleSubmit = ()=>{
@@ -158,7 +158,7 @@ export default function Home() {
           {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> */}
       </Link>
     </nav>
-    <form encType="multipart/form-data" onSubmit={handleSubmit} action={dispatch} className="flex flex-col mt-[9vh] pt-3 w-screen min-h-screen gap-5 justify-center items-center" method='POST'>    
+    <form onSubmit={handleSubmit} action={dispatch} className="flex flex-col mt-[9vh] pt-3 w-screen min-h-screen gap-5 justify-center items-center">    
       <div className="flex flex-col gap-3 items-center justify-center w-[80%]">
           <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
