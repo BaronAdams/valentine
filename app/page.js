@@ -184,7 +184,7 @@ export default function Home() {
   {state?.url &&  <div className="w-[100%] mt-2 flex flex-col items-center gap-2">
     <a className="block font-medium text-blue-600 underline " href={`${state.url}`}>Tap this link &#128513; </a> 
     <p className="font-bold">Or</p>
-    <a className="block font-medium" href={`whatsapp://send?text=${encodeURIComponent(`For ${secondName} from ${firstName} &#x1F601; :\n${state.url}\n\n\nTry your own there &#x1F447; :\n${state.baseUrl}`)}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
+    <a className="block font-medium" href={`whatsapp://send?text=${encodeURIComponent(`${firstName} has a gift for ${secondName} \u{1FA77}\u{1F381}\u{1F970} :\n${state.url}\n\n\nTry your own there \u{1F447} :\n${state.baseUrl}`)}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
   </>
   );
 }
