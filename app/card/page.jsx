@@ -42,7 +42,7 @@ function Card() {
 
   return (
       <main className="flex flex-col w-screen min-h-screen items-center overflow-x-hidden">
-        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[50%] max-[700px]:w-[75%] max-[700px]:h-[70vh]  max-[400px]:w-full" style={{backgroundImage:`url('${image}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
+        <div className="w-[25%] h-[55vh] relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-[75%] max-[700px]:h-[70vh]  max-[700px]:w-full" style={{backgroundImage:`url('${image}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
           {/* <Image width={40} height={40} src={"/images/reginia.jpg"} className="absolute z-1 w-full h-full object-cover" alt="Valentine image" /> */}
           <Image width={40} height={40} src={"/images/13ea8843c050622e2055b313c2392aba.webp"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
           <Image width={40} height={40} src={"/images/icegif-4148.gif"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
