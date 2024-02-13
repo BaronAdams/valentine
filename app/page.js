@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFormState } from 'react-dom'
 import { create } from "@/lib/actions";
 import Link from "next/link";
@@ -24,6 +24,7 @@ export default function Home() {
   const [loading, setloading] = useState(false);
   const [isSend, setisSend] = useState(false);
   const [finished, setIsfinished] = useState(false);
+  const scrollRef = useRef()
 
   const handleChangeFile = (e)=>{
     setFile(e.target?.files[0])
@@ -124,7 +125,6 @@ export default function Home() {
   }
   
   useEffect(()=>{
-    console.log(state)
     if(state?.url || state?.username || state?.file || state?.valentine_name || state?.error){
       setloading(false)
     } 
@@ -133,6 +133,13 @@ export default function Home() {
       generateImg(state.user)
     }
   },[state])
+
+  useEffect(()=>{
+    console.log(state)
+    if(state?.url && finished){
+      scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+    } 
+  },[state,finished])
 
   return (
     <>
@@ -190,10 +197,15 @@ export default function Home() {
   <svg className="inline w-[40px] h-[40px] me-2 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx={18} cy={12} r={0} fill="currentColor"><animate attributeName="r" begin={0.67} calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"></animate></circle><circle cx={12} cy={12} r={0} fill="currentColor"><animate attributeName="r" begin={0.33} calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"></animate></circle><circle cx={6} cy={12} r={0} fill="currentColor"><animate attributeName="r" begin={0} calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0"></animate></circle></svg>
     <span className="inline">Generating image and links</span>
   </div>}
-  {state?.url && finished &&  <div className="w-[100%] mt-2 flex flex-col items-center gap-2">
-    <a className="block font-medium text-blue-600 underline " href={`${state.url}`}>Tap this link &#128513; </a> 
-    <p className="font-bold">Or</p>
-    <a className="block font-medium" href={`whatsapp://send?text=${encodeURIComponent(`${firstName} has a gift for ${secondName} \u{1FA77}\u{1F381}\u{1F970} :\n${state.url}\n\n\nTry your own there \u{1F447} :\n${state.baseUrl}`)}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a> </div>}
+  <div ref={scrollRef} className="w-[100%] mt-2 flex flex-col items-center gap-2">
+    {state?.url && finished && (
+      <>  
+        <a className="block font-medium text-blue-600 underline " href={`${state.url}`}>Tap this link &#128513; </a> 
+        <p className="font-bold">Or</p>
+        <a className="block font-medium" href={`whatsapp://send?text=${encodeURIComponent(`${firstName} has a gift for ${secondName} \u{1FA77}\u{1F381}\u{1F970} :\n${state.url}\n\n\nTry your own there \u{1F447} :\n${state.baseUrl}`)}`} data-action="share/whatsapp/share">Share to your valentine in WhatsApp <img width={25} height={25} src="/images/whatsapp.png" className="object-cover object-center inline" alt="Whatsapp icon"/></a>
+      </>
+    )}
+    </div>
   </>
   );
 }
