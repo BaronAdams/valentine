@@ -138,8 +138,7 @@ export default function Home() {
     <>
     <nav className="bg-white overflow-hidden fixed w-full z-20 flex flex-wrap items-center justify-center h-[9vh] top-0 start-0 border-b border-gray-200">
       <Link href="/" className="flex h-full w-full justify-center items-center space-x-3 rtl:space-x-reverse">
-          <img src="/logo.jpg" className="h-full w-full object-cover object-center scale-[0.65] min-[530px]:w-[80%] min-[610px]:w-[70%] min-[730px]:w-[60%] min-[865px]:w-[54%] min-[880px]:w-[50%] min-[1000px]:w-[46%] min-[1050px]:w-[42%] min-[1100px]:w-[40%]  " alt="Valentine's Logo"/>
-          {/* <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> */}
+          <img src="/logo.jpg" className="h-full w-full object-cover object-center scale-[0.65] min-[530px]:w-[80%] min-[610px]:w-[70%] min-[730px]:w-[60%] min-[865px]:w-[54%] min-[880px]:w-[50%] min-[1000px]:w-[46%] min-[1050px]:w-[42%] min-[1100px]:w-[40%]" alt="Valentine's Logo"/>
       </Link>
     </nav>
     <form onSubmit={handleSubmit} action={dispatch} className="flex flex-col mt-[9vh] pt-3 w-screen min-h-screen gap-5 justify-center items-center">    
