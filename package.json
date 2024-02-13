@@ -9,18 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.0",
     "cloudinary": "^1.41.3",
-    "crypto": "^1.0.1",
     "flowbite": "^2.2.1",
-    "gsap": "^3.12.5",
     "html2canvas": "^1.4.1",
     "next": "14.1.0",
     "next-cloudinary": "^5.20.0",
-    "pako": "^2.1.0",
     "react": "^18",
-    "react-dom": "^18",
-    "zlib": "^1.0.5"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
