@@ -42,7 +42,7 @@ function Card() {
 
   return (
       <main className="flex max-[900px]:flex-col w-screen min-h-screen items-center overflow-x-hidden">
-        <div className="min-[900px]:w-[55%] h-[55vh] min-[900px]:h-screen relative overflow-hidden max-[900px]:h-[65vh] max-[900px]:w-full max-[700px]:h-[70vh]" style={{backgroundImage:`url('${image}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
+        <div className="w-full min-[900px]:w-[55%] h-screen relative overflow-hidden  max-[700px]:h-[70vh] " style={{backgroundImage:`url('${image}')`, backgroundPosition:"center", backgroundSize:"cover"}}>
           {/* <Image width={40} height={40} src={"/images/reginia.jpg"} className="absolute z-1 w-full h-full object-cover" alt="Valentine image" /> */}
           <Image width={40} height={40} src={"/images/13ea8843c050622e2055b313c2392aba.webp"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
           <Image width={40} height={40} src={"/images/icegif-4148.gif"} className="absolute z-20 w-full h-full object-cover" alt="Valentine image" />
@@ -60,9 +60,9 @@ function Card() {
             <p className={`${raleway.className} w-full text-[17.8px]`}>{finalMessage}</p>
             <p className={`${brittany.className} w-full mt-3 text-end text-[17.8px]`}>{username}</p>
           </div> 
-          <div className="w-[42%] min-[634px]:w-[35%] h-[170px] min-[700px]:h-[200px] min-[830px]:w-[32%] min-[830px]:h-[230px] relative">
+          <div className="w-[42%] min-[634px]:w-[35%] h-[170px] min-[700px]:h-[200px] min-[830px]:w-[32%] min-[900px]:w-[50%] min-[1100px]:w-[40%] min-[830px]:h-[230px] relative">
             <div className="w-full h-full absolute z-10 rotate-[-15.6deg] flex justify-center items-center bg-white">
-              <img src={`${image}`} className="w-[90%] h-[90%] object-cover" />
+              <img src={`${image}`} className="w-[90%] h-[90%]  object-cover" />
             </div>
             <div className="w-full h-full absolute z-1 blur-sm rotate-[-26.6deg] shadow-2xl bg-[#000000]">
             </div>
