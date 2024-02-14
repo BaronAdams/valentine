@@ -181,7 +181,7 @@ export default function Home() {
       </div>  
       <div className="w-[32%] max-[640px]:w-[60%] max-[960px]:w-[50%] max-[480px]:w-[80%]">
         <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 ">Your message for him/her(optionnal)</label>
-        <textarea onChange={(e)=>setMsg(e.target.value)} name="message" minLength={20} maxLength={80} id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your wishes here..."></textarea>
+        <textarea onChange={(e)=>setMsg(e.target.value)} name="message" minLength={20} maxLength={170} id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your wishes here..."></textarea>
       </div>
       <div className="w-[100%] flex flex-col items-center">
         <button type="submit" disabled={loading || isSend} className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center ${isSend && 'bg-green-600 hover:bg-green-600'}`}>
