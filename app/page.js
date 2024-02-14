@@ -158,7 +158,7 @@ export default function Home() {
                   <p className="mb-2 text-sm text-gray-500 text-center"><span className="font-semibold">Click to upload your valentine picture</span>or drag and drop</p>
                   <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
               </div>
-              <input onChange={handleChangeFile} id="dropzone-file" name="image" type="file" className="hidden" accept="image/*" required />
+              <input onChange={handleChangeFile} id="dropzone-file" name="image" type="file" className="hidden" accept="image/*" />
           </label>
           {((state && !file) || (state?.file && !file)) && <p className="mt-2 text-sm text-red-600"><span className="font-medium">{state?.file}</span></p>}
       </div>
